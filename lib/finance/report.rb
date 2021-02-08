@@ -1,5 +1,5 @@
 module Finance
-  #Class for encapsulating report
+  # Class for encapsulating report
   class Report
     attr_reader :income, :expense, :tax, :date
 

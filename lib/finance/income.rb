@@ -42,5 +42,10 @@ module Finance
       end
       total_net_income
     end
+
+    def average_income_in(start_date, end_date, reports)
+      total_days = (end_date - start_date).to_i
+      total_income_in(start_date, end_date, reports) / total_days
+    end
   end
 end
