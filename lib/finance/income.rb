@@ -30,5 +30,17 @@ module Finance
         end
       end
     end
+
+    def total_net_income_in(start_date, end_date, reports)
+      total_net_income = 0
+      reports.each do |report|
+        next unless report.date >= start_date && report.date <= end_date
+
+        gross_income = report.income - report.expense
+        net_income = gross_income - (gross_income * report.tax)
+        total_net_income += net_income
+      end
+      total_net_income
+    end
   end
 end
