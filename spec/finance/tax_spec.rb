@@ -32,5 +32,14 @@ RSpec.describe Finance::Tax do
         expect(subject.income_tax(gross_income)).to eq(expected_tax)
       end
     end
+
+    context 'when type is other than lised above' do
+      let(:type) { 'OTHER' }
+      let(:expected_tax) { 300.0 }
+
+      it 'returns 30% of the griss income' do
+        expect(subject.income_tax(gross_income)).to eq(expected_tax)
+      end
+    end
   end
 end
