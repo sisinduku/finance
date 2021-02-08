@@ -20,5 +20,15 @@ module Finance
         end
       end
     end
+
+    def total_expense_in(start_date, end_date, reports)
+      reports.reduce(0) do |total_expense, report|
+        if report.date >= start_date && report.date <= end_date
+          total_expense + report.expense
+        else
+          total_expense
+        end
+      end
+    end
   end
 end
