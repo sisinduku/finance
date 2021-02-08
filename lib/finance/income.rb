@@ -5,7 +5,7 @@ module Finance
       total_net_income = 0
       reports.each do |report|
         gross_income = report.income - report.expense
-        net_income = gross_income - (gross_income * report.tax)
+        net_income = gross_income - report.tax.income_tax(gross_income)
         total_net_income += net_income
       end
       total_net_income
@@ -37,7 +37,7 @@ module Finance
         next unless report.date >= start_date && report.date <= end_date
 
         gross_income = report.income - report.expense
-        net_income = gross_income - (gross_income * report.tax)
+        net_income = gross_income - report.tax.income_tax(gross_income)
         total_net_income += net_income
       end
       total_net_income
