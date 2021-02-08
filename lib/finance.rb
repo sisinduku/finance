@@ -1,5 +1,6 @@
 require 'finance/version'
 require 'finance/income'
+require 'finance/tax'
 
 require 'date'
 
