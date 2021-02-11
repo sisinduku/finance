@@ -8,6 +8,7 @@ RSpec.describe Finance::Income do
   let(:reports) { [first_report, second_report, third_report] }
   let(:start_date) { Date.parse('2021-02-01') }
   let(:end_date) { Date.parse('2021-03-01') }
+  let(:date_range) { Finance::DateRange.new(start_date, end_date) }
 
   describe '#get_total_net_income' do
     let(:expected_total_net_income) { 720 + 1900 - 190 + 1900 - 190 }
@@ -21,7 +22,7 @@ RSpec.describe Finance::Income do
     let(:expected_result) { 4000 }
 
     it 'returns total net income' do
-      expect(subject.total_income_in(start_date, end_date, reports)).to eq(expected_result)
+      expect(subject.total_income_in(date_range, reports)).to eq(expected_result)
     end
   end
 
@@ -29,7 +30,7 @@ RSpec.describe Finance::Income do
     let(:expected_result) { 200 }
 
     it 'returns total expense in specified date range' do
-      expect(subject.total_expense_in(start_date, end_date, reports)).to eq(expected_result)
+      expect(subject.total_expense_in(date_range, reports)).to eq(expected_result)
     end
   end
 
@@ -37,7 +38,7 @@ RSpec.describe Finance::Income do
     let(:expected_result) { 3420.0 }
 
     it 'returns total net income in specified date range' do
-      expect(subject.total_net_income_in(start_date, end_date, reports)).to eq(expected_result)
+      expect(subject.total_net_income_in(date_range, reports)).to eq(expected_result)
     end
   end
 
@@ -45,7 +46,7 @@ RSpec.describe Finance::Income do
     let(:expected_result) { 142.0 }
 
     it 'returns average income in specified date range' do
-      expect(subject.average_income_in(start_date, end_date, reports)).to eq(expected_result)
+      expect(subject.average_income_in(date_range, reports)).to eq(expected_result)
     end
   end
 end
