@@ -6,7 +6,7 @@ module Finance
     def initialize(income, expense, type, date)
       @income = income
       @expense = expense
-      @tax = Tax.new(type)
+      @tax = Tax.create(type)
       @date = date
     end
 

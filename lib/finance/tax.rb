@@ -1,20 +1,18 @@
 module Finance
   # Class for calculating your tax
   class Tax
-    def initialize(type)
-      @type = type
-    end
+    attr_reader :type
 
-    def income_tax(gross_income)
-      case @type
+    def self.create(type)
+      case type
       when 'INDIVIDUAL'
-        gross_income * 0.1
+        Finance::IndividualTax.new
       when 'ENTERPRISE'
-        gross_income * 0.2
+        Finance::EnterpriseTax.new
       when 'GOVERNMENT'
-        gross_income * 0.05
+        Finance::GovernmentTax.new
       else
-        gross_income * 0.3
+        Finance::BasicTax.new
       end
     end
   end
