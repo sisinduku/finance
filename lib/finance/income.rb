@@ -36,7 +36,7 @@ module Finance
     end
 
     def average_income_in(date_range, reports)
-      total_days = (date_range.end_date - date_range.start_date).to_i
+      total_days = date_range.get_total_number_of_days
       total_income_in(date_range, reports) / total_days
     end
 
