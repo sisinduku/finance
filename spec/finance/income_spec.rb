@@ -9,6 +9,14 @@ RSpec.describe Finance::Income do
   let(:start_date) { Date.parse('2021-02-01') }
   let(:end_date) { Date.parse('2021-03-01') }
 
+  describe '#get_total_net_income' do
+    let(:expected_total_net_income) { 720 + 1900 - 190 + 1900 - 190 }
+
+    it 'returns total net income from reports' do
+      expect(subject.get_total_net_income(reports)).to eq(expected_total_net_income)
+    end
+  end
+
   describe '#total_income_in' do
     let(:expected_result) { 4000 }
 
