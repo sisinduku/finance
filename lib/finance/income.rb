@@ -2,13 +2,7 @@ module Finance
   # Class for calculating your income
   class Income
     def get_total_net_income(reports)
-      total_net_income = 0
-      reports.each do |report|
-        gross_income = report.income - report.expense
-        net_income = gross_income - report.tax.income_tax(gross_income)
-        total_net_income += net_income
-      end
-      total_net_income
+      reports.sum { |report| get_net_income(report) }
     end
 
     def total_income_in(start_date, end_date, reports)
@@ -46,6 +40,14 @@ module Finance
     def average_income_in(start_date, end_date, reports)
       total_days = (end_date - start_date).to_i
       total_income_in(start_date, end_date, reports) / total_days
+    end
+
+    private
+
+    def get_net_income(report)
+      gross_income = report.income - report.expense
+      net_income = gross_income - report.tax.income_tax(gross_income)
+      return net_income
     end
   end
 end
